@@ -8,7 +8,11 @@ const state = {
     selected: {},
 }
 
-const getters = {}
+const getters = {
+    allBoards: (state) => {
+        return state.boards
+    },
+}
 
 const actions = {
     async getAllBoards({ commit }) {
