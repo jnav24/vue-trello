@@ -15,7 +15,14 @@ const state = {
 
 const getters = {
     allBoards: (state) => state.boards,
-    allLabels: () => state.labels,
+    allLabels: (state) => {
+        return state.labels.map((label) => {
+            return {
+                id: label.id,
+                name:`${label.name || 'Blank'} (${label.color || 'none'})`,
+            }
+        })
+    },
     allLists: (state) => state.lists,
     allCards: (state) => {
         return state.cards
