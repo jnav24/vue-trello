@@ -23,6 +23,7 @@
 						<v-layout>
 							<v-flex lg3 xl3>
 								<v-text-field
+									:disabled="!getSelected.board || !getSelected.board.trim()"
 									v-model="form.search.value"
 									@blur="updateSearch()"
 									@keyup.enter="updateSearch()"
