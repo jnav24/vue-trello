@@ -45,7 +45,7 @@
 									:items="allLabels"
 									item-value="id"
 									item-text="name"
-									label="Cards"></v-select>
+									label="Labels"></v-select>
 							</v-flex>
 						</v-layout>
 					</v-card-text>
@@ -92,8 +92,16 @@
 				'addSelectedBoard',
 				'addSelectedLabel',
 				'addSelectedList',
+				'resetLabelsState',
+				'resetListsState',
+				'resetSelectedState',
 			]),
 			updateBoard() {
+				this.resetSelectedState()
+				this.resetLabelsState()
+				this.resetListsState()
+				this.form.label.value = ''
+				this.form.list.value = ''
 				this.addSelectedBoard(this.form.board.value)
 				this.getAllCards()
 				this.getAllLabels()

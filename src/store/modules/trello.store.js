@@ -127,6 +127,19 @@ const mutations = {
     addSelectedList(state, payload) {
         state.selected = { ...state.selected, list: payload }
     },
+    resetLabelsState(state) {
+        state.labels = []
+    },
+    resetListsState(state) {
+        state.lists = []
+    },
+    resetSelectedState(state) {
+        state.selected = {
+            board: '',
+            label: '',
+            list: '',
+        }
+    },
 }
 
 const Trello = {
