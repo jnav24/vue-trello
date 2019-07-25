@@ -98,6 +98,9 @@ const mutations = {
     addSelectedBoard(state, payload) {
         state.selected = { ...state.selected, board: payload }
     },
+    addSelectedList(state, payload) {
+        state.selected = { ...state.selected, list: payload }
+    },
 }
 
 const Trello = {

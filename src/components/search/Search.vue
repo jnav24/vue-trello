@@ -14,7 +14,7 @@
 						<v-layout>
 							<v-flex lg3 xl3>
 								<v-select
-									v-model="form.boards.value"
+									v-model="form.board.value"
 									:items="allBoards"
 									@change="updateBoard()"
 									item-value="id"
@@ -27,8 +27,9 @@
 							<v-flex lg3 xl3>
 								<v-select
 									:disabled="!allLists"
-									v-model="form.boards.value"
-									:items="allBoards"
+									v-model="form.list.value"
+									@change="updateList()"
+									:items="allLists"
 									item-value="id"
 									item-text="name"
 									label="Lists"></v-select>
@@ -39,7 +40,7 @@
 							<v-flex lg3 xl3>
 								<v-select
 									:disabled="true"
-									v-model="form.boards.value"
+									v-model="form.label.value"
 									:items="allBoards"
 									item-value="id"
 									item-text="name"
@@ -67,7 +68,13 @@
 		data() {
 			return {
 				form: {
-					boards: {
+					board: {
+						value: '',
+					},
+					label: {
+						value: '',
+					},
+					list: {
 						value: '',
 					},
 				},
@@ -80,11 +87,15 @@
 			]),
 			...mapMutations([
 				'addSelectedBoard',
+				'addSelectedList',
 			]),
 			updateBoard() {
-				this.addSelectedBoard(this.form.boards.value)
+				this.addSelectedBoard(this.form.board.value)
 				this.getAllCards()
 				this.getAllLists()
+			},
+			updateList() {
+				this.addSelectedList(this.form.list.value)
 			}
 		},
 	}
