@@ -5,13 +5,21 @@ const state = {
     boards: [],
     lists: [],
     cards: [],
-    selected: {},
+    selected: {
+        board: '',
+        list: '',
+        label: '',
+    },
 }
 
 const getters = {
     allBoards: (state) => {
         return state.boards
     },
+    allCards: (state) => {
+        return state.cards
+    },
+    getSelected: (state) => state.selected,
 }
 
 const actions = {
@@ -36,16 +44,16 @@ const actions = {
             return responseService.getFailure()
         }
     },
-    async getAllCards({ commit }, payload) {
+    async getAllCards({ commit, state }) {
         try {
             const data = {
-                url: `boards/${payload.id}/cards`,
+                url: `boards/${state.selected.board}/cards`,
                 params: {
-                    fields: 'name,url',
+                    fields: 'name,idList,url',
                 },
             }
             const response = await httpService.get(data)
-
+            console.log(response)
             if (responseService.isSuccess(response)) {
                 commit('addCards', response.data)
                 return responseService.getSuccess(response.data)
@@ -87,7 +95,10 @@ const mutations = {
     },
     addCards(state, payload) {
         state.cards = payload
-    }
+    },
+    addSelectedBoard(state, payload) {
+        state.selected = { ...state.selected, board: payload }
+    },
 }
 
 const Trello = {

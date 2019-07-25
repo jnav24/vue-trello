@@ -10,11 +10,13 @@
 					</v-card-title>
 
 					<v-card-text>
+						<pre>{{ getSelected }}</pre>
 						<v-layout>
 							<v-flex lg3 xl3>
 								<v-select
 									v-model="form.boards.value"
 									:items="allBoards"
+									@change="updateBoard()"
 									item-value="id"
 									item-text="name"
 									label="Boards"></v-select>
@@ -58,6 +60,7 @@
 		computed: {
 			...mapGetters([
 				'allBoards',
+				'getSelected',
 			]),
 		},
 		data() {
@@ -67,6 +70,12 @@
 						value: '',
 					},
 				},
+			}
+		},
+		methods: {
+			updateBoard() {
+				this.$store.commit('addSelectedBoard', this.form.boards.value)
+				this.$store.dispatch('getAllCards')
 			}
 		},
 	}
