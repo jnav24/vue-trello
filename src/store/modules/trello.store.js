@@ -72,11 +72,11 @@ const actions = {
             const data = {
                 url: `boards/${state.selected.board}/cards`,
                 params: {
-                    fields: 'name,idList,url,idLabels',
+                    fields: 'name,idList,url,idLabels,desc',
                 },
             }
             const response = await httpService.get(data)
-            console.log(response)
+
             if (responseService.isSuccess(response)) {
                 commit('addCards', response.data)
                 return responseService.getSuccess(response.data)
