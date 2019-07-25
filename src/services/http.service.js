@@ -42,8 +42,8 @@ export default class HttpService {
      * Axios does not seem to have a work around for this, so use this method
      * and add it to the url string
      *
-     * @param name
-     * @param objList
+     * @param name {string}
+     * @param objList {Array}
      * @returns {string}
      */
     urlArrayBuilder(name, objList) {
