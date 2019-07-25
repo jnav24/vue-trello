@@ -13,9 +13,8 @@ const state = {
 }
 
 const getters = {
-    allBoards: (state) => {
-        return state.boards
-    },
+    allBoards: (state) => state.boards,
+    allLists: (state) => state.lists,
     allCards: (state) => {
         return state.cards
     },
@@ -64,10 +63,10 @@ const actions = {
             return responseService.getFailure()
         }
     },
-    async getAllLists({ commit }, payload) {
+    async getAllLists({ commit, state }) {
         try {
             const data = {
-                url: `boards/${payload.id}/lists`,
+                url: `boards/${state.selected.board}/lists`,
                 params: {
                     fields: 'name,url',
                 },
