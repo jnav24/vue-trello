@@ -113,6 +113,7 @@
 				this.resetListsState()
 				this.form.label.value = ''
 				this.form.list.value = ''
+				this.form.search.value = ''
 			},
 			updateBoard() {
 				this.resetEverything()
