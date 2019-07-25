@@ -24,7 +24,8 @@
 							<v-flex lg3 xl3>
 								<v-text-field
 									v-model="form.search.value"
-									@key.enter="updateSearch()"
+									@blur="updateSearch()"
+									@keyup.enter="updateSearch()"
 									label="Search by name"></v-text-field>
 							</v-flex>
 
@@ -101,6 +102,7 @@
 				'addSelectedBoard',
 				'addSelectedLabel',
 				'addSelectedList',
+				'addSelectedSearch',
 				'resetLabelsState',
 				'resetListsState',
 				'resetSelectedState',
@@ -125,7 +127,9 @@
 			updateLabel() {
 				this.addSelectedLabel(this.form.label.value)
 			},
-			updateSearch() {},
+			updateSearch() {
+				this.addSelectedSearch(this.form.search.value)
+			},
 		},
 	}
 </script>

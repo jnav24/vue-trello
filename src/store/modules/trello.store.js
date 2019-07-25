@@ -10,6 +10,7 @@ const state = {
         board: '',
         list: '',
         label: '',
+        search: '',
     },
 }
 
@@ -134,6 +135,9 @@ const mutations = {
     addSelectedList(state, payload) {
         state.selected = { ...state.selected, list: payload }
     },
+    addSelectedSearch(state, payload) {
+        state.selected = { ...state.selected, search: payload }
+    },
     resetLabelsState(state) {
         state.labels = []
     },
@@ -145,6 +149,7 @@ const mutations = {
             board: '',
             label: '',
             list: '',
+            search: '',
         }
     },
 }
