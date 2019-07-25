@@ -11,14 +11,21 @@
 
 					<v-card-text>
 						<v-layout>
+							<v-select
+								v-model="form.board.value"
+								:items="allBoards"
+								@change="updateBoard()"
+								item-value="id"
+								item-text="name"
+								label="Boards"></v-select>
+						</v-layout>
+
+						<v-layout>
 							<v-flex lg3 xl3>
-								<v-select
-									v-model="form.board.value"
-									:items="allBoards"
-									@change="updateBoard()"
-									item-value="id"
-									item-text="name"
-									label="Boards"></v-select>
+								<v-text-field
+									v-model="form.search.value"
+									@key.enter="updateSearch()"
+									label="Search by name"></v-text-field>
 							</v-flex>
 
 							<v-spacer></v-spacer>
@@ -78,6 +85,9 @@
 					list: {
 						value: '',
 					},
+					search: {
+						value: '',
+					},
 				},
 			}
 		},
@@ -95,12 +105,15 @@
 				'resetListsState',
 				'resetSelectedState',
 			]),
-			updateBoard() {
+			resetEverything() {
 				this.resetSelectedState()
 				this.resetLabelsState()
 				this.resetListsState()
 				this.form.label.value = ''
 				this.form.list.value = ''
+			},
+			updateBoard() {
+				this.resetEverything()
 				this.addSelectedBoard(this.form.board.value)
 				this.getAllCards()
 				this.getAllLabels()
@@ -111,7 +124,8 @@
 			},
 			updateLabel() {
 				this.addSelectedLabel(this.form.label.value)
-			}
+			},
+			updateSearch() {},
 		},
 	}
 </script>
