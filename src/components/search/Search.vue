@@ -41,6 +41,7 @@
 								<v-select
 									:disabled="!allLabels"
 									v-model="form.label.value"
+									@change="updateLabel()"
 									:items="allLabels"
 									item-value="id"
 									item-text="name"
@@ -89,6 +90,7 @@
 			]),
 			...mapMutations([
 				'addSelectedBoard',
+				'addSelectedLabel',
 				'addSelectedList',
 			]),
 			updateBoard() {
@@ -99,6 +101,9 @@
 			},
 			updateList() {
 				this.addSelectedList(this.form.list.value)
+			},
+			updateLabel() {
+				this.addSelectedLabel(this.form.label.value)
 			}
 		},
 	}

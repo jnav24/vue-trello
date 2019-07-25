@@ -121,6 +121,9 @@ const mutations = {
     addSelectedBoard(state, payload) {
         state.selected = { ...state.selected, board: payload }
     },
+    addSelectedLabel(state, payload) {
+        state.selected = { ...state.selected, label: payload }
+    },
     addSelectedList(state, payload) {
         state.selected = { ...state.selected, list: payload }
     },
