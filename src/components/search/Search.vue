@@ -26,7 +26,7 @@
 
 							<v-flex lg3 xl3>
 								<v-select
-									:disabled="true"
+									:disabled="!allLists"
 									v-model="form.boards.value"
 									:items="allBoards"
 									item-value="id"
@@ -54,12 +54,13 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+	import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 	export default {
 		computed: {
 			...mapGetters([
 				'allBoards',
+				'allLists',
 				'getSelected',
 			]),
 		},
@@ -73,9 +74,17 @@
 			}
 		},
 		methods: {
+			...mapActions([
+				'getAllCards',
+				'getAllLists',
+			]),
+			...mapMutations([
+				'addSelectedBoard',
+			]),
 			updateBoard() {
-				this.$store.commit('addSelectedBoard', this.form.boards.value)
-				this.$store.dispatch('getAllCards')
+				this.addSelectedBoard(this.form.boards.value)
+				this.getAllCards()
+				this.getAllLists()
 			}
 		},
 	}
