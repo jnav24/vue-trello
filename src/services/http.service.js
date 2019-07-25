@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const domain = process.env.VUE_APP_TRELLO_API;
+const key = process.env.VUE_APP_TRELLO_KEY
+const token = process.env.VUE_APP_TRELLO_TOKEN
 
 export default class HttpService {
     /**
@@ -15,7 +17,7 @@ export default class HttpService {
     async get(data) {
         return await axios({
             method: 'GET',
-            url: domain + data.url,
+            url: domain + data.url + `?key=${key}&token=${token}`,
             params: data.params || {},
         });
     }
