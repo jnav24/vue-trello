@@ -10,7 +10,6 @@
 					</v-card-title>
 
 					<v-card-text>
-						<pre>{{ getSelected }}</pre>
 						<v-layout>
 							<v-flex lg3 xl3>
 								<v-select
@@ -26,7 +25,7 @@
 
 							<v-flex lg3 xl3>
 								<v-select
-									:disabled="!allLists"
+									:disabled="!allLists.length"
 									v-model="form.list.value"
 									@change="updateList()"
 									:items="allLists"
@@ -39,7 +38,7 @@
 
 							<v-flex lg3 xl3>
 								<v-select
-									:disabled="!allLabels"
+									:disabled="!allLabels.length"
 									v-model="form.label.value"
 									@change="updateLabel()"
 									:items="allLabels"
