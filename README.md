@@ -1,4 +1,5 @@
-# vue-trello-v2
+# Vue Trello
+Grab data from the Trello API like boards and cards
 
 ## Project setup
 ```
