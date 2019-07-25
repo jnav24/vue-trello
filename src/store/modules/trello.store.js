@@ -25,8 +25,22 @@ const getters = {
         })
     },
     allLists: (state) => state.lists,
-    allCards: (state) => {
-        return state.cards
+    allCards: (state, getters) => {
+        let cards = JSON.parse(JSON.stringify(state.cards))
+
+        if (getters.getSelected.label) {
+            cards = cards.filter((card) => card.idLabels.indexOf(getters.getSelected.label) > -1)
+        }
+
+        if (getters.getSelected.list) {
+            cards = cards.filter((card) => card.idList === getters.getSelected.list)
+        }
+
+        if (getters.getSelected.search) {
+            cards = cards.filter((card) => card.name.indexOf(getters.getSelected.search) > -1)
+        }
+
+        return cards
     },
     getSelected: (state) => state.selected,
 }
@@ -58,7 +72,7 @@ const actions = {
             const data = {
                 url: `boards/${state.selected.board}/cards`,
                 params: {
-                    fields: 'name,idList,url',
+                    fields: 'name,idList,url,idLabels',
                 },
             }
             const response = await httpService.get(data)
