@@ -39,9 +39,9 @@
 
 							<v-flex lg3 xl3>
 								<v-select
-									:disabled="true"
+									:disabled="!allLabels"
 									v-model="form.label.value"
-									:items="allBoards"
+									:items="allLabels"
 									item-value="id"
 									item-text="name"
 									label="Cards"></v-select>
@@ -61,6 +61,7 @@
 		computed: {
 			...mapGetters([
 				'allBoards',
+				'allLabels',
 				'allLists',
 				'getSelected',
 			]),
@@ -83,6 +84,7 @@
 		methods: {
 			...mapActions([
 				'getAllCards',
+				'getAllLabels',
 				'getAllLists',
 			]),
 			...mapMutations([
@@ -92,6 +94,7 @@
 			updateBoard() {
 				this.addSelectedBoard(this.form.board.value)
 				this.getAllCards()
+				this.getAllLabels()
 				this.getAllLists()
 			},
 			updateList() {

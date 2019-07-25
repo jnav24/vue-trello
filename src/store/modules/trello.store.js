@@ -3,6 +3,7 @@ import { httpService, responseService } from '../../module'
 
 const state = {
     boards: [],
+    labels: [],
     lists: [],
     cards: [],
     selected: {
@@ -14,6 +15,7 @@ const state = {
 
 const getters = {
     allBoards: (state) => state.boards,
+    allLabels: () => state.labels,
     allLists: (state) => state.lists,
     allCards: (state) => {
         return state.cards
@@ -63,6 +65,24 @@ const actions = {
             return responseService.getFailure()
         }
     },
+    async getAllLabels({ commit, state }) {
+        try {
+            const data = {
+                url: `boards/${state.selected.board}/labels`,
+                params: {},
+            }
+            const response = await httpService.get(data)
+
+            if (responseService.isSuccess(response)) {
+                commit('addLabels', response.data)
+                return responseService.getSuccess(response.data)
+            }
+
+            return responseService.getFailure()
+        } catch (error) {
+            return responseService.getFailure()
+        }
+    },
     async getAllLists({ commit, state }) {
         try {
             const data = {
@@ -88,6 +108,9 @@ const actions = {
 const mutations = {
     addBoards(state, payload) {
         state.boards = payload
+    },
+    addLabels(state, payload) {
+        state.labels = payload
     },
     addLists(state, payload) {
         state.lists = payload
