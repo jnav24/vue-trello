@@ -5,7 +5,7 @@
 		<v-layout justify-center>
 			<v-flex lg8 xl8>
 				<v-card>
-					<v-card-title>
+					<v-card-title style="justify-content: center">
 						<h1>Search Trello</h1>
 					</v-card-title>
 

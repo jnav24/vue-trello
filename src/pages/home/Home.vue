@@ -4,7 +4,7 @@
 	<div id="home">
 		<Search></Search>
 
-		<v-layout justify-center>
+		<v-layout style="margin-top: 65px;" justify-center>
 			<v-flex lg8	xl8>
 				<div v-if="isEmpty(getSelected.board)">
 					Select board to display cards
