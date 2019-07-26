@@ -104,12 +104,14 @@
 				'addSelectedLabel',
 				'addSelectedList',
 				'addSelectedSearch',
+				'resetCards',
 				'resetLabelsState',
 				'resetListsState',
 				'resetSelectedState',
 			]),
 			resetEverything() {
 				this.resetSelectedState()
+				this.resetCards()
 				this.resetLabelsState()
 				this.resetListsState()
 				this.form.label.value = ''
