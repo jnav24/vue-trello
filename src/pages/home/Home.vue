@@ -1,3 +1,5 @@
+<style src="./home.scss" lang="scss" scoped></style>
+
 <template>
 	<div id="home">
 		<Search></Search>
@@ -21,16 +23,19 @@
 								lg4 xl4
 								:key="card.id"
 								v-for="(card) in allCards">
-								<v-card>
-									<v-card-text style="text-align: left">
-										<pre>{{ card }}</pre>
-										<h3 style="height: auto; max-height: 50px; overflow: hidden; text-overflow: ellipsis;white-space: nowrap; width: 100%;">{{ card.name }}</h3>
-										<p>{{ card.desc }}</p>
-										<v-chip
-											:key="int"
-											v-for="(label, int) in card.idLabels">
-											{{ getLabelName(label) }}
-										</v-chip>
+								<v-card class="card-container">
+									<v-card-text style="overflow: hidden; text-align: left">
+										<h3 class="card-header">{{ card.name }}</h3>
+										<p class="card-desc">
+											{{ card.desc.substr(0,250) }}<span v-if="card.desc.length > 250">...</span>
+										</p>
+										<div class="card-labels">
+											<v-chip
+												:key="int"
+												v-for="(label, int) in card.idLabels">
+												{{ getLabelName(label) }}
+											</v-chip>
+										</div>
 									</v-card-text>
 								</v-card>
 							</v-flex>
