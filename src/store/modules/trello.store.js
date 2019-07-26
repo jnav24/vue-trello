@@ -152,7 +152,7 @@ const mutations = {
     addSelectedSearch(state, payload) {
         state.selected = { ...state.selected, search: payload }
     },
-    resetCards(state) {
+    resetCardsState(state) {
         state.cards = []
     },
     resetLabelsState(state) {

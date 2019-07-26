@@ -57,6 +57,11 @@
 							</v-flex>
 						</v-layout>
 					</v-card-text>
+
+					<v-card-actions style="justify-content: center; padding-bottom: 15px;">
+						<v-btn
+							@click="resetForm(true)">Reset</v-btn>
+					</v-card-actions>
 				</v-card>
 			</v-flex>
 		</v-layout>
@@ -104,19 +109,26 @@
 				'addSelectedLabel',
 				'addSelectedList',
 				'addSelectedSearch',
-				'resetCards',
+				'resetCardsState',
 				'resetLabelsState',
 				'resetListsState',
 				'resetSelectedState',
 			]),
 			resetEverything() {
-				this.resetSelectedState()
-				this.resetCards()
+				this.resetCardsState()
 				this.resetLabelsState()
 				this.resetListsState()
+				this.resetForm()
+			},
+			resetForm(resetBoards = false) {
+				if (resetBoards) {
+					this.form.board.value = ''
+				}
+
 				this.form.label.value = ''
 				this.form.list.value = ''
 				this.form.search.value = ''
+				this.resetSelectedState()
 			},
 			updateBoard() {
 				this.resetEverything()
