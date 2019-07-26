@@ -12,6 +12,7 @@ const state = {
         label: '',
         search: '',
     },
+    loading: false,
 }
 
 const getters = {
@@ -43,6 +44,7 @@ const getters = {
         return cards
     },
     getSelected: (state) => state.selected,
+    isLoading: (state) => state.loading,
 }
 
 const actions = {
@@ -69,6 +71,7 @@ const actions = {
     },
     async getAllCards({ commit, state }) {
         try {
+            commit('setLoading', true)
             const data = {
                 url: `boards/${state.selected.board}/cards`,
                 params: {
@@ -79,11 +82,14 @@ const actions = {
 
             if (responseService.isSuccess(response)) {
                 commit('addCards', response.data)
+                commit('setLoading', false)
                 return responseService.getSuccess(response.data)
             }
 
+            commit('setLoading', false)
             return responseService.getFailure()
         } catch (error) {
+            commit('setLoading', false)
             return responseService.getFailure()
         }
     },
@@ -168,6 +174,9 @@ const mutations = {
             list: '',
             search: '',
         }
+    },
+    setLoading(state, payload) {
+        state.loading = payload
     },
 }
 

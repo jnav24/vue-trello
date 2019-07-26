@@ -11,7 +11,16 @@
 				</div>
 
 				<div v-if="!isEmpty(getSelected.board) && !allCards.length">
-					This board has no cards
+					<div v-if="!isLoading">
+						This board has no cards
+					</div>
+
+					<div v-if="isLoading">
+						<p>Trello cards are loading...</p>
+
+						<v-progress-circular
+							indeterminate></v-progress-circular>
+					</div>
 				</div>
 
 				<div v-if="!isEmpty(getSelected.board) && allCards.length">
@@ -59,7 +68,8 @@
 			...mapGetters([
 				'allCards',
 				'allLabels',
-				'getSelected'
+				'getSelected',
+				'isLoading',
 			]),
 		},
 		created() {
